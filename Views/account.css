@@ -1,0 +1,55 @@
+body{
+    padding: 0;
+    margin : 0;
+}
+
+.cover{
+    width: 100%;
+    height: 300px;
+    background-color: aqua;
+}
+
+.info{
+    width: 100%;
+    height: 400px;
+    background-color: rgb(0, 0, 0);
+}
+
+
+.link{
+    width: 100%;
+    height: 100px;
+    background-color: silver;
+    
+}
+
+.tweet{
+    width: 100%;
+    height: 600px;
+    background-color: black;
+}
+
+#ovale {
+    width: 110px;
+    height: 100px;
+    border-radius: 100px / 100px;
+    background: rgb(122, 106, 75);
+    margin-left: 100px;
+}
+
+h1{
+    color: aliceblue;
+    margin-left: 100px;
+}
+
+p{
+    color: aliceblue;
+    margin-left: 100px;
+}
+
+h2{
+    color: aliceblue;
+    margin-left: 100px;
+   margin-top: 0px;
+}
+
