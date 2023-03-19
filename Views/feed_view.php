@@ -19,6 +19,16 @@ include '../Controllers/feed_controller.php';
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/b87d756cc2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../Views/signin.css">
+
+    <style>.bg-light{
+  background-color: #FAECBC;
+ 
+ }
+
+ .bg-black {
+  color:white;
+ }
+ </style>
 </head>
     <body class="bg-[#FAECBC]">
     
@@ -38,7 +48,7 @@ include '../Controllers/feed_controller.php';
                 <a href="#" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:p-0 dark:text-white" aria-current="page">Home</a>
               </li>
               <li>
-                <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                <a href="../Views/account_view.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Profile</a>
               </li>
               <li>
                 <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
@@ -52,11 +62,21 @@ include '../Controllers/feed_controller.php';
               <li>
                 <a href="#"><i class="fa-solid fa-power-off text-white"></i></a>
               </li>
+              <li>
+                <a href="#"><i class="fa-solid fa-toggle-on text-white" id="dark-mode"></i></a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
 
+      <div class="searchTag">
+         <form method="get">
+             <input type="text" id="tweet__field" name="searchTag" placeholder="Search a tag">
+             <button type="submit" name="search_tag">Search</button>
+             <?php require '../Models/Tags.php' ?>
+         </form>
+      </div>
       <form class ="justify-center flex " id="tweet__form" method="post"  action="../Views/feed_view.php" enctype="multipart/form-data">
         <div class="w-[600px] mt-5 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
@@ -78,14 +98,9 @@ include '../Controllers/feed_controller.php';
             </div>
         </div>
     </form>
-    <div class="searchTag">
-         <form method="get">
-             <input type="text" id="tweet__field" name="searchTag" placeholder="Search a tag">
-             <button type="submit" name="search_tag">Search</button>
-             <?php require '../Models/Tags.php' ?>
+
          </form>
-         
-     </div>
+ 
     <!-- <form method="post" action="../Views/feed_view.php" enctype="multipart/form-data">
                 <input type="file" name="images">
                 <input type="submit" value="Upload">
@@ -117,5 +132,11 @@ include '../Controllers/feed_controller.php';
      <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
      <script src="../Ajax/tweet_post_ajax.js"></script>
        
+     <script>
+        const darkModeButton = document.getElementById('dark-mode');
+        const body = document.body;darkModeButton.addEventListener('click', () => {
+          body.classList.toggle('bg-light');
+          body.classList.toggle('bg-black');});
+          </script>
 </body>
 </html>

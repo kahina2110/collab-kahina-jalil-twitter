@@ -1,14 +1,13 @@
 <?php
 require '../database/db.php';
 
-class Account{
+class UsersProfile
+{
     private string $nickname;
-    private string $email;
 
     public function __construct()
     {
-        $this->nickname = $_SESSION['NICKNAME'];
-        $this->email = $_SESSION['EMAIL'];
+        $this->nickname = $_POST['users__nickname'];
     }
 
     // Nickname
@@ -21,33 +20,23 @@ class Account{
         return $this->nickname;
     }
 
-    // Email
-    public function setEmail(string $email)
-    {
-        $this->email = $email;
-    }
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function accountDisplay()
+    public function usersProfileDisplay()
     {
         $db = new Database();   
         $connexion = $db->getConnexion();
 
         // get user id
-        $requestId = $connexion->query("SELECT id FROM users WHERE email = '$this->email' OR nickname = '$this->nickname'");
+        $requestId = $connexion->query("SELECT id FROM users WHERE nickname = '$this->nickname'");
         $result = $requestId->fetch_all(MYSQLI_ASSOC);
         $userId = $result[0]['id'];
 
-        $requestTweets = $connexion->query("SELECT message FROM tweets WHERE user_id = '$userId' ORDER BY id DESC LIMIT 50");
-        $resultTweets = $requestTweets->fetch_all(MYSQLI_ASSOC);
+        $requestUsersTweets = $connexion->query("SELECT nickname, email, user_id, message FROM users INNER JOIN tweets WHERE users.id = tweets.user_id AND user_id = '$userId'");
+        $resultUsersTweets = $requestUsersTweets->fetch_all(MYSQLI_ASSOC);
 
-        return $resultTweets;
+        return $resultUsersTweets;
     }
 
-    public function getFollows()
+    public function usersFollows()
     {
         $db = new Database();   
         $connexion = $db->getConnexion();
@@ -58,15 +47,15 @@ class Account{
         return $resultFollows;
     }
 
-    public function getFollowers()
+    public function usersFollowers()
     {
         $db = new Database();   
         $connexion = $db->getConnexion();
 
-        $requestFollowers = $connexion->query("SELECT nickname FROM users WHERE follows LIKE '%$this->nickname%'");
+        $requestFollowers = $connexion->query("SELECT COUNT(follows) FROM users WHERE follows LIKE '%$this->nickname%'");
         $resultFollowers = $requestFollowers->fetch_all(MYSQLI_ASSOC);
 
         return $resultFollowers;
+
     }
 }
-?>

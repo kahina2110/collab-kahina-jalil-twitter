@@ -15,7 +15,7 @@ $(function() {
                 success: function(response)
                 {   
                     console.log(response);
-                    if (response === 1)
+                    if (response > 1)
                     {
                         alert('Tweet liked!');
                         // window.location.href = 'http://localhost/W-WEB-090-LIL-1-1-academie-marie.robertson/Views/feed_view.php';

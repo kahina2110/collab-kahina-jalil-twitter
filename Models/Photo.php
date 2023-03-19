@@ -25,8 +25,7 @@ public function setImages($images)
   $db = new Database();   
   $connexion = $db->getConnexion();
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $target_dir = "assetsUser/";
-  $target_file = $target_dir . basename($_FILES["images"]["name"]);
+    $target_dir = "../Views/assetsUser/";  $target_file = $target_dir . basename($_FILES["images"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   
@@ -68,7 +67,8 @@ public function setImages($images)
       $req->execute();
 
       $postPictures = $connexion->query("SELECT images FROM tweets");
-      echo '<img src='. $file . '>';
+      
+      // echo '<img src='. $file . '>';
       
       // echo "Le fichier ". htmlspecialchars( basename( $_FILES["images"]["name"])). " a été uploadé.";
     } else {

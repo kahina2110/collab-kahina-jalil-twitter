@@ -10,7 +10,15 @@ session_start();?>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/b87d756cc2.js" crossorigin="anonymous"></script>
     
-    
+    <style>.bg-light{
+      background-color: #FAECBC;
+ 
+ }
+
+ .bg-black {
+  color:white;
+ }
+ </style>
     <title>CONNEXION</title>
 </head>
 
@@ -27,35 +35,20 @@ session_start();?>
       <span class="sr-only">Open main menu</span>
       <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
     </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-black ">
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:p-0 dark:text-white" aria-current="page">Home</a>
+    <li>
+          <a href="../Views/signin_view.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Inscription</a>
         </li>
+
         <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-        </li>
-        <li>
-          <i class="fa-solid fa-power-off text-white"></i>
-        </li>
-      </ul>
-    </div>
+                <a href="#"><i class="fa-solid fa-toggle-on text-white" id="dark-mode"></i></a>
+              </li>
   </div>
 </nav>
 
     
     <div class="container mx-auto justify-center flex mt-[60px] space-x-20 ">
       <div class="row">
-      <img class=" mt-4 w-[18rem] h-[40rem] " src="../assets/lemokup.png">
+      <img class=" mt-4 w-[18rem] h-[40rem] " src="../lemokup.png">
     </div>
     <!-- <img class="  -left-11 w-[38rem] columns-6  float-left" src="../Views/assets/image3.png"> -->
     <div class="row  justify-content-center">
@@ -81,7 +74,7 @@ session_start();?>
   <div class="md:flex md:justify-between">
       <div class="mb-6 md:mb-0 text-white">
           <a href="" class="flex items-center">
-              <img src="./assets/capt1.png" class="h-8 mr-3" alt="FlowBite Logo" />
+              <img src="./capt1.png" class="h-8 mr-3" alt="FlowBite Logo" />
               <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Twist</span>
           </a>
       </div>
@@ -147,6 +140,13 @@ session_start();?>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="../Ajax/login_ajax.js"></script>
+       
+    <script>
+        const darkModeButton = document.getElementById('dark-mode');
+        const body = document.body;darkModeButton.addEventListener('click', () => {
+          body.classList.toggle('bg-light');
+          body.classList.toggle('bg-black');});
+    </script>
 </body>
 
 </html>

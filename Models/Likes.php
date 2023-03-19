@@ -26,14 +26,14 @@ class Likes
             $tweet_id =   $tweet['id'];
             // $images = $tweet['images'];
             if($tweet['id']){
-            echo '</br>'.'<p style="margin-left:500px">'. $tweet['message'] . $tweet['images'] . '</p>'  ;
+            echo '</br>'.'<p style="margin-left:500px">'. $tweet['message'] . $tweet['images'] . '</p>'  . '</br>';
             echo '<form method="POST" action="?action=like">';
             echo '<input type="hidden" name="tweet_id" value="' . $tweet_id . '">';
             echo '<input type="hidden" name="user_id" value="' . $theuserid . '">';};
             if(!empty($tweet['images'])){
-            echo '<img src='. $tweet['images']. ' width="150">' . '</br>';
+            echo '<img src='. $tweet['images']. ' width="150" style="margin-left: 500px;">';
             };
-            echo '<button type="submit" name="like" id="like_button">Like</button>';
+            echo '<button style="margin-left: 500px; border: solid 1px;" type="submit" name="like" id="like_button">Like</button>';
             echo '</form>';
                 
                 $count = $connexion->query("SELECT  count(*) as 'nombre de likes', tweets.message, tweets.images from likes inner join tweets on tweets.id = tweet_id where tweet_id=$tweet_id and tweets.user_id = $theuserid");
@@ -42,7 +42,7 @@ class Likes
                     $count = $count->fetch();
            
                 
-                echo  '</br>'. '<span style="margin-left: 500px" class="like-count">' . "  " . $count['nombre de likes'] . " " . " J'aime" . '</span>';
+                echo  '<span style="margin-left: 500px" class="like-count">' . "  " . $count['nombre de likes'] . " " . " J'aime" . '</span>';
            
             }
             if (isset($_POST['like']) && isset($_POST['tweet_id']) && isset($_POST['user_id'])) {

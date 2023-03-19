@@ -1,4 +1,3 @@
-
 <?php
 require '../database/db.php';
 
@@ -78,13 +77,13 @@ class Tweet
         $target_file = $target_dir . basename($_FILES["images"]["name"]);
         $file =$target_file;
 
-        $db = new Database();   
-        $connexion = $db->getConnexion();
-        $req = $connexion->prepare("INSERT INTO tweets (images) VALUES ('$target_file')");
-        $req->execute();
+        // $db = new Database();   
+        // $connexion = $db->getConnexion();
+        // $req = $connexion->prepare("INSERT INTO tweets (images) VALUES ('$target_file')");
+        // $req->execute();
   
-        $postPictures = $connexion->query("SELECT images FROM tweets");
-        echo '<img src='.$file . '>';
+        // $postPictures = $connexion->query("SELECT images FROM tweets");
+        // echo '<img src='.$file . '>';
         
 
         return $resultDisplay;

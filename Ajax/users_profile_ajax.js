@@ -1,21 +1,20 @@
 $(function() {
 
-    $('#logout__button').click(function(e) 
+    $('#users_profile').click(function(e) 
     {
-        const button = $('#logout__button')
+        const button = $('#users__profile')
         e.preventDefault();
 
         $.ajax(
         {
             type: "POST",
-            url: "../Controllers/logout_controller.php",
+            url: "../Controllers/usersprofile_controller.php",
             data: button.serialize(),
             success: function(response)
             {   
                 if (response !== false)
                 {
-                    console.log(response);
-                    window.location.href = '../Views/login_view.php';
+                    window.location.href = '../Views/users_profile_view.php';
                 } else
                 {
                         alert('Error');

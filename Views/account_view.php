@@ -1,9 +1,65 @@
-<?php
+<?php 
 session_start();
-if(!isset($_SESSION['EMAIL']))
-{
-    header('Location: http://localhost/W-PHP-501-LIL-1-1-mymeetic-marie.robertson/view/login.php?');
-};
+include '../Controllers/account_controller.php';
+?>
+
+
+<?php
+
+
+
+
+
+  require_once('../database/db.php');
+  $db = new Database();   
+  $connexion = $db->getConnexion();
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $target_dir = "../Views/assetsUser/";  $target_file = $target_dir . basename($_FILES["images"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  
+  // Vérifier si le fichier est une image
+  if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["images"]["tmp_name"]);
+    if($check !== false) {
+      $uploadOk = 1;
+    } else {
+      echo "Le fichier n'est pas une image.";
+      $uploadOk = 0;
+    }
+  }
+
+  
+  // Vérifier la taille du fichier
+  if ($_FILES["images"]["size"] > 1000000) {
+    echo "Le fichier est trop grand.";
+    $uploadOk = 0;
+  }
+ 
+  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+  && $imageFileType != "gif" ) {
+    echo "Seuls les fichiers JPG, JPEG, PNG et GIF sont autorisés." . "</br>";
+    $uploadOk = 0;
+  }
+  // Vérifier si $uploadOk est à 0 à cause d'une erreur
+  if ($uploadOk == 0) {
+    echo "Le fichier n'a pas été uploadé.";
+  // Sinon, uploader le fichier
+  }
+  $theuserid =$_SESSION["NICKNAME"];
+
+  $file="";
+$file =$target_file;
+$db = new Database();   
+$connexion = $db->getConnexion();
+$req = $connexion->prepare("UPDATE users (picture) SET ()");
+$req->execute();
+
+$postPictures = $connexion->query("SELECT picture FROM users");
+
+  
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,72 +67,125 @@ if(!isset($_SESSION['EMAIL']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/b87d756cc2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../Views/account.css"> 
-    <title>Document</title>
+    <title>PROFILE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+<script src="https://kit.fontawesome.com/b87d756cc2.js" crossorigin="anonymous"></script>
+
+<style>.bg-light{
+  background-color: #FAECBC;
+ 
+ }
+
+ .bg-black {
+  color:white;
+ }
+ </style>
+    <link rel="stylesheet" href="../Views/signin.css">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <img src="../Views/assets/logo.png">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <body class="bg-light">
+    
+      <nav class="bg-black border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+          <a href="https://flowbite.com/" class="flex items-center">
+              <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" /> -->
+              <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+          </a>
+          <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <!-- <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-black ">
+              <li>
+                <a href="#" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:p-0 dark:text-white" aria-current="page">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+              <li>
+                <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+              <li>
+                <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
+              <li>
+                <a href="../Views/feed_view.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Explorer</a>
               </li>
-            </ul> -->
+              <li>
+                <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
+              </li>
+              <li>
+                <a href="#"><i class="fa-solid fa-power-off text-white"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa-solid fa-toggle-on text-white" id="dark-mode"></i></a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
-  <div class="cover">
 
-      <img src="../Views/assets/user.png" alt="Avatar"> 
-      <img id ="monster" src="../Views/assets/Capture_d_écran_2023-02-21_20-01-17-removebg-preview(1).png">
-</div>
-<div class="info">
-    <div id="ovale"></div>
-    <h1><?php echo $_SESSION['NICKNAME'] ?></h1>
-    <p><?php echo $_SESSION['EMAIL'] ?></p>
-    <p>A rejoint Twitter en septembre 2022</p>
-    <p>7 Abonnement 6 Abonnés</p>
-</div>
+        <div class="backscreen w-full h-[400px] bg-[#D0C6A2] relative ">
+            
+        <div class="picture rounded-full bg-black h-[250px] w-[250px] ml-auto mr-auto absolute bottom-[-180px] left-[50%] translate-x-[-50%] translate-y-[-50%] " >
+          <?php  
+     {
 
-<div class="bio">
-    <h1>@Jm_plouk</h1>
-    <p><b>1023 </b>Abonnements</p>
-    <p><b>122K </b> Abonnés</p><br>
-    <p><b>"J'adore jouer et grimper partout"</b>"</p>
-</div>
-<hr>
-<div class="tweet">
-<div class="bulle">
-<h2>@Jm_plouk</h2>
-<p>C'est mon premier tweet je suis timide <br>#shy</p>
-<div class="buttons">
-<i class="fa-regular fa-comment"></i>
-<i class="fa-solid fa-retweet"></i>
-<i class="fa-regular fa-heart"></i>
-</div>
-</div>
-    <p><?php echo $_SESSION['TWEETS'] ?></p>
-<h2>
-    Qui suivre 
-</h2>
-</div>
 
+      echo '<img class="rounded-full h-[250px] w-[250px] "  src='. $_SESSION['PICTURE'] . '>';
+      
+      // echo "Le fichier ". htmlspecialchars( basename( $_FILES["images"]["name"])). " a été uploadé.";
+    } ?>
+          </div>   
+        </div>
+        <form method="post" enctype="multipart/form-data">
+                    <input type="file" name="images" >
+                    <input type="submit" name="submit">
+              
+          </form>
+        <div class="text-center mt-[65px]">
+            <button class="absolute left-[80%] w-[60px] rounded-[50px] bg-[#FFD42A]"><i class="fa-regular fa-user-pen"></i></button>
+            <h1><?php echo $_SESSION['NICKNAME'] ?></h1>
+        <p><?php echo $_SESSION['EMAIL'] ?></p>
+        <p><?php
+            foreach (displayFollows() as $follows) {
+                $follows = explode(" ,", $follows);
+                if ($follows == "") {
+                    echo '0';
+                } else {
+                    echo count($follows);
+                }
+            }
+            ?>
+            <button id="follows__button" type="submit">Follows</button></p>
+        <p><?php
+            $count = 0;
+            foreach (displayFollowers() as $userFollowers) {
+                $count += 1;
+            }          
+            echo $count;       
+        ?>
+            <button id="followers__button" type="submit">Followers</button></p>
+    </div>
+    <div class="tweet">
+        <?php
+        foreach (displayAccount() as $userTweets) {
+            echo $userTweets['message'] . "</br>";
+        }
+        ?>
+            <p class="text-[8pt] mt-2"><b>1023</b> Abonnements <b>122k</b> Abonnés</p>
+            <p class="text-[10pt] mt-3">"Les pinkous c'est pour la vie"</p>
+        </div>
+
+        <script>
+        const darkModeButton = document.getElementById('dark-mode');
+        const body = document.body;darkModeButton.addEventListener('click', () => {
+          body.classList.toggle('bg-light');
+          body.classList.toggle('bg-black');});
+          </script>
 </body>
+<script src="../Ajax/account_ajax.js"></script>
+<script src="../Ajax/edit_page_ajax.js"></script>
+<script src="../Ajax/followslist_ajax.js"></script>
+<script src="../Ajax/followerslist_ajax.js"></script>
+
+
 </html>

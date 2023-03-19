@@ -21,9 +21,9 @@ $(function() {
                 {   
                     if (response == 'success')
                     {
-                        // alert('Connexion complete')
+                        alert('Connexion complete')
 
-                        window.location.href = '../Views/feed_view.php';
+                        window.location.href = 'http://localhost/W-WEB-090-LIL-1-1-academie-marie.robertson/Views/feed_view.php';
                     } else
                     {
                         alert('No account found. Please sign in before login.');
