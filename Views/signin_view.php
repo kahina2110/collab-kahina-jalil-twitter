@@ -40,7 +40,7 @@
       </nav>
     
     <div class="container mx-auto justify-center flex mt-[60px] space-x-20 ">
-      <img class=" mt-4 w-[18rem] h-[40rem] columns-6   " src="../Views/assets/lemokup.png">
+      <img class=" mt-4 w-[18rem] h-[40rem] columns-6   " src="../assets/lemokup.png">
       <div class="row  justify-content-center">
       <!-- <img class="  -left-11 w-[38rem] columns-6  float-left" src="../Views/assets/image3.png"> -->
     <div class=" oho bg-[#FFBF84]  mt-[100px] border-6 border-black rounded-[50px] h-[30rem] w-[25rem] flex p-10 sm:justify-center ">

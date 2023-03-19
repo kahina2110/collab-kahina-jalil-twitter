@@ -1,7 +1,5 @@
-<?php
-session_start();
-// session_destroy();
-?>
+<?php 
+session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,10 +9,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/b87d756cc2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../Views/signin.css">
     
     
-    <title>Document</title>
+    <title>CONNEXION</title>
 </head>
 
 <body class="bg-[#FAECBC]">
@@ -58,7 +55,7 @@ session_start();
     
     <div class="container mx-auto justify-center flex mt-[60px] space-x-20 ">
       <div class="row">
-      <img class=" mt-4 w-[18rem] h-[40rem] " src="../Views/assets/lemokup.png">
+      <img class=" mt-4 w-[18rem] h-[40rem] " src="../assets/lemokup.png">
     </div>
     <!-- <img class="  -left-11 w-[38rem] columns-6  float-left" src="../Views/assets/image3.png"> -->
     <div class="row  justify-content-center">
