@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include '../Controllers/feed_controller.php';
@@ -62,7 +61,8 @@ include '../Controllers/feed_controller.php';
         <div class="w-[600px] mt-5 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                 <label for="comment" class="sr-only">Your comment</label>
-                <textarea id="tweet_field" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 " placeholder="Start to twist..." required></textarea>
+                <textarea type="text" id="tweet__field" name="message" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 " placeholder="Start to twist..." required></textarea>
+                <!-- <input type="text" id="tweet__field" name="message" placeholder="Post a new tweet !"> -->
             </div>
             <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                 <button type="submit" id="tweet__button" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-[#FFBF84]  rounded-lg hover:bg-orange">
