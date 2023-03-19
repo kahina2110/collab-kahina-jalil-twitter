@@ -57,11 +57,11 @@ include '../Controllers/feed_controller.php';
         </div>
       </nav>
 
-      <form class ="justify-center flex " id="tweet__form" method="get">
+      <form class ="justify-center flex " id="tweet__form" method="post"  action="../Views/feed_view.php" enctype="multipart/form-data">
         <div class="w-[600px] mt-5 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                 <label for="comment" class="sr-only">Your comment</label>
-                <textarea type="text" id="tweet__field" name="message" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 " placeholder="Start to twist..." required></textarea>
+                <textarea type="text" id="tweet__field" name="message" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 " placeholder="Start to twist..." ></textarea>
                 <!-- <input type="text" id="tweet__field" name="message" placeholder="Post a new tweet !"> -->
             </div>
             <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
@@ -70,19 +70,23 @@ include '../Controllers/feed_controller.php';
                 </button>
                 <div class="flex pl-0 space-x-1 sm:pl-2">
                  
-                    <button type="button" class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                        <i class="fa-solid fa-image"></i>
-                        <span class="sr-only">Upload image</span>
-                    </button>
+                <input  class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-[#FFBF84]  rounded-lg hover:bg-orange w-[120px]" type="submit" value="TWIST IMAGES">
+                    
+                    <label for="file-upload" class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"><i class="fa-solid fa-image"></i><span class="sr-only">Upload image</span></label>
+                    <input id="file-upload" type="file" name="images" class="hidden" />
                 </div>
             </div>
         </div>
-     </form>
+    </form>
+    <!-- <form method="post" action="../Views/feed_view.php" enctype="multipart/form-data">
+                <input type="file" name="images">
+                <input type="submit" value="Upload">
+            </form>     -->
 
      <div class="container">
         <div class ="row">
             <div class="post">
-                
+            
             </div>
         </div>
      </div>
