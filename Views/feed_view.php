@@ -78,6 +78,14 @@ include '../Controllers/feed_controller.php';
             </div>
         </div>
     </form>
+    <div class="searchTag">
+         <form method="get">
+             <input type="text" id="tweet__field" name="searchTag" placeholder="Search a tag">
+             <button type="submit" name="search_tag">Search</button>
+             <?php require '../Models/Tags.php' ?>
+         </form>
+         
+     </div>
     <!-- <form method="post" action="../Views/feed_view.php" enctype="multipart/form-data">
                 <input type="file" name="images">
                 <input type="submit" value="Upload">
@@ -101,14 +109,7 @@ include '../Controllers/feed_controller.php';
      
      
                  
-     <div class="searchTag">
-         <form method="get">
-             <input type="text" id="tweet__field" name="searchTag" placeholder="Search a tag">
-             <button type="submit" name="search_tag">Search</button>
-             <?php require '../Models/Tags.php' ?>
-         </form>
-         
-     </div>
+     
      </div>
      
      <?php require_once('../Models/Photo.php');    ?>    
